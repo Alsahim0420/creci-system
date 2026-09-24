@@ -8,18 +8,20 @@ abstract class Image {
 
 // Real subject - expensive to create
 class RealImage implements Image {
-  final String _filename;
+  final String filename;
   final int _sizeInMB;
   bool _loaded = false;
 
-  RealImage(this._filename, this._sizeInMB);
+  RealImage(this.filename, this._sizeInMB);
 
   void _load() {
     _loaded = true;
   }
 
   @override
-  void display() => _load();
+  void display() {
+    if (!_loaded) _load();
+  }
 
   @override
   String getSize() => '$_sizeInMB MB';
@@ -30,7 +32,6 @@ class ProxyImage implements Image {
   final String _filename;
   final int _sizeInMB;
   RealImage? _realImage;
-  bool _displayCount = false;
 
   ProxyImage(this._filename, this._sizeInMB);
 
@@ -39,7 +40,6 @@ class ProxyImage implements Image {
     if (_realImage == null) {
       _realImage = RealImage(_filename, _sizeInMB);
     }
-    _displayCount = true;
     _realImage!.display();
   }
 
@@ -73,7 +73,8 @@ class _ProxyExampleState extends State<ProxyExample> {
     _addLog('Loading ${_images[index]._filename}...');
     _images[index].display();
     setState(() {
-      _addLog('✓ Loaded: ${_images[index]._filename} (${_images[index].getSize()})');
+      _addLog(
+          '✓ Loaded: ${_images[index]._filename} (${_images[index].getSize()})');
     });
   }
 
@@ -102,11 +103,12 @@ class _ProxyExampleState extends State<ProxyExample> {
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: _images[index].isLoaded ? Colors.green.withAlpha(20) : Colors.grey.withAlpha(20),
+                  color: _images[index].isLoaded
+                      ? Colors.green.withAlpha(20)
+                      : Colors.grey.withAlpha(20),
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-                    color:
-                        _images[index].isLoaded ? Colors.green : Colors.grey,
+                    color: _images[index].isLoaded ? Colors.green : Colors.grey,
                   ),
                 ),
                 child: Row(
@@ -125,11 +127,14 @@ class _ProxyExampleState extends State<ProxyExample> {
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         Text(
-                          _images[index].isLoaded ? '✓ Loaded in memory' : '○ Not loaded yet',
+                          _images[index].isLoaded
+                              ? '✓ Loaded in memory'
+                              : '○ Not loaded yet',
                           style: TextStyle(
                             fontSize: 12,
-                            color:
-                                _images[index].isLoaded ? Colors.green : Colors.orange,
+                            color: _images[index].isLoaded
+                                ? Colors.green
+                                : Colors.orange,
                           ),
                         ),
                       ],

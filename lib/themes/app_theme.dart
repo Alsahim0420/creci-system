@@ -28,7 +28,6 @@ class AppTheme {
         secondary: secondaryColor,
         error: dangerColor,
         surface: Color(0xFFFFFFFF),
-        background: Color(0xFFFAFAFA),
       ),
 
       // AppBar Theme
@@ -40,7 +39,7 @@ class AppTheme {
       ),
 
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: const Color(0xFFFFFFFF),
         elevation: 2,
         margin: const EdgeInsets.all(8),
@@ -125,7 +124,8 @@ class AppTheme {
           borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(color: primaryColor, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
     );
   }
@@ -145,7 +145,6 @@ class AppTheme {
         secondary: secondaryColor,
         error: dangerColor,
         surface: Color(0xFF1E1E1E),
-        background: Color(0xFF121212),
       ),
 
       // AppBar Theme
@@ -157,7 +156,7 @@ class AppTheme {
       ),
 
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: const Color(0xFF1E1E1E),
         elevation: 2,
         margin: const EdgeInsets.all(8),
@@ -242,7 +241,8 @@ class AppTheme {
           borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(color: primaryColor, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
     );
   }

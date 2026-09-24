@@ -81,7 +81,7 @@ class _AdapterExampleState extends State<AdapterExample> {
               _buildWeatherItem(
                 'Temperature',
                 _weather.getTemperature(),
-                Icons.thermometer,
+                Icons.thermostat,
                 Colors.red,
               ),
               const SizedBox(height: 12),

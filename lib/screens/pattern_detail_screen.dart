@@ -164,7 +164,7 @@ class PatternDetailScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: categoryColor.withAlpha(10),
-            borderLeft: BorderSide(color: categoryColor, width: 4),
+            border: Border(left: BorderSide(color: categoryColor, width: 4)),
             borderRadius: BorderRadius.circular(4),
           ),
           child: Text(
@@ -235,12 +235,7 @@ class PatternDetailScreen extends StatelessWidget {
   }
 
   String _getCategoryName(String patternId) {
-    const creational = [
-      'singleton',
-      'factory',
-      'builder',
-      'abstract_factory'
-    ];
+    const creational = ['singleton', 'factory', 'builder', 'abstract_factory'];
     const structural = ['adapter', 'decorator', 'facade', 'proxy'];
 
     if (creational.contains(patternId)) {
@@ -253,12 +248,7 @@ class PatternDetailScreen extends StatelessWidget {
   }
 
   Color _getCategoryColor(String patternId) {
-    const creational = [
-      'singleton',
-      'factory',
-      'builder',
-      'abstract_factory'
-    ];
+    const creational = ['singleton', 'factory', 'builder', 'abstract_factory'];
     const structural = ['adapter', 'decorator', 'facade', 'proxy'];
 
     if (creational.contains(patternId)) {
@@ -273,21 +263,33 @@ class PatternDetailScreen extends StatelessWidget {
   Map<String, dynamic> _getPatternInfo(String patternId) {
     final patterns = {
       'singleton': {
-        'problem': 'Necesitas que solo exista UNA instancia de algo (Logger, DB, API Client)',
-        'solution': 'Un patrón que controla la instantiación para asegurar una única instancia',
+        'problem':
+            'Necesitas que solo exista UNA instancia de algo (Logger, DB, API Client)',
+        'solution':
+            'Un patrón que controla la instantiación para asegurar una única instancia',
         'useCases': ['Logger', 'DatabaseManager', 'ApiClient', 'ConfigManager'],
       },
       'factory': {
         'problem':
             'Tienes múltiples tipos de objetos similares y no quieres que el cliente conozca los detalles',
         'solution': 'Una fábrica decide qué tipo crear basado en parámetros',
-        'useCases': ['OrderFactory', 'PaymentFactory', 'UserProvider', 'DialogFactory'],
+        'useCases': [
+          'OrderFactory',
+          'PaymentFactory',
+          'UserProvider',
+          'DialogFactory'
+        ],
       },
       'builder': {
         'problem': 'Objetos con muchos parámetros, muchos opcionales',
         'solution':
             'Un builder que añade parámetros uno por uno de forma legible',
-        'useCases': ['ComplexOrderBuilder', 'UIBuilder', 'QueryBuilder', 'HTTPRequestBuilder'],
+        'useCases': [
+          'ComplexOrderBuilder',
+          'UIBuilder',
+          'QueryBuilder',
+          'HTTPRequestBuilder'
+        ],
       },
       'abstract_factory': {
         'problem': 'UI diferente por tema (Light/Dark) pero misma lógica',
@@ -295,18 +297,28 @@ class PatternDetailScreen extends StatelessWidget {
         'useCases': ['UIThemeFactory', 'PlatformFactory', 'DatabaseFactory'],
       },
       'adapter': {
-        'problem': 'Tienes API vieja con interface rara, necesitas interface nueva',
+        'problem':
+            'Tienes API vieja con interface rara, necesitas interface nueva',
         'solution': 'Un adaptador traduce entre ambas interfaces',
-        'useCases': ['PaymentAdapter', 'LegacyAPIAdapter', 'ThirdPartyIntegration'],
+        'useCases': [
+          'PaymentAdapter',
+          'LegacyAPIAdapter',
+          'ThirdPartyIntegration'
+        ],
       },
       'decorator': {
         'problem':
             'Quieres añadir responsabilidades dinámicamente sin explosión de subclases',
         'solution': 'Decora el objeto con componentes adicionales',
-        'useCases': ['CoffeeDecorator (Milk, Sugar)', 'UIDecorator', 'LoggingDecorator'],
+        'useCases': [
+          'CoffeeDecorator (Milk, Sugar)',
+          'UIDecorator',
+          'LoggingDecorator'
+        ],
       },
       'facade': {
-        'problem': 'Subsistema con 10+ clases, no quieres que otros las usen directamente',
+        'problem':
+            'Subsistema con 10+ clases, no quieres que otros las usen directamente',
         'solution': 'Una Facade simplifica el acceso',
         'useCases': ['AppFacade', 'DatabaseFacade', 'PaymentGatewayFacade'],
       },
@@ -318,17 +330,26 @@ class PatternDetailScreen extends StatelessWidget {
       'observer': {
         'problem': 'Cuando cambia algo, muchas pantallas deben actualizarse',
         'solution': 'El objeto cambiante "avisa" a los que están escuchando',
-        'useCases': ['OrderObserver', 'LiveData', 'StateNotifier', 'ChangeNotifier'],
+        'useCases': [
+          'OrderObserver',
+          'LiveData',
+          'StateNotifier',
+          'ChangeNotifier'
+        ],
       },
       'strategy': {
-        'problem': 'Múltiples formas de hacer lo mismo, elige en tiempo de ejecución',
+        'problem':
+            'Múltiples formas de hacer lo mismo, elige en tiempo de ejecución',
         'solution': 'Cada estrategia es una clase separada',
         'useCases': ['PricingStrategy', 'PaymentStrategy', 'SortingStrategy'],
       },
       'state': {
         'problem': 'Objeto se comporta diferente según su estado',
         'solution': 'Cada estado es una clase separada',
-        'useCases': ['OrderState (Pending/Processing/Completed)', 'ConnectionState'],
+        'useCases': [
+          'OrderState (Pending/Processing/Completed)',
+          'ConnectionState'
+        ],
       },
       'command': {
         'problem': 'Necesitas undo/redo, queue de acciones, scheduled tasks',
@@ -337,7 +358,8 @@ class PatternDetailScreen extends StatelessWidget {
       },
       'template_method': {
         'problem': 'Múltiples clases con estructura similar',
-        'solution': 'Clase base define estructura, subclases implementan detalles',
+        'solution':
+            'Clase base define estructura, subclases implementan detalles',
         'useCases': ['DataSyncProcess', 'ReportGenerator', 'DataParser'],
       },
       'chain': {

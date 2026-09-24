@@ -45,8 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
       category: 'Creational',
       categoryColor: AppTheme.creationalColor,
       description: 'Garantiza una única instancia de una clase',
-      problem: 'Necesitas que solo exista UNA instancia de algo (Logger, DB, API Client)',
-      solution: 'Un patrón que controla la instantiación para asegurar una única instancia',
+      problem:
+          'Necesitas que solo exista UNA instancia de algo (Logger, DB, API Client)',
+      solution:
+          'Un patrón que controla la instantiación para asegurar una única instancia',
       useCases: ['Logger', 'DatabaseManager', 'ApiClient', 'ConfigManager'],
       icon: Icons.lock,
     ),
@@ -56,9 +58,15 @@ class _HomeScreenState extends State<HomeScreen> {
       category: 'Creational',
       categoryColor: AppTheme.creationalColor,
       description: 'Crea objetos sin especificar sus clases concretas',
-      problem: 'Tienes múltiples tipos de objetos similares y no quieres que el cliente conozca los detalles',
+      problem:
+          'Tienes múltiples tipos de objetos similares y no quieres que el cliente conozca los detalles',
       solution: 'Una fábrica decide qué tipo crear basado en parámetros',
-      useCases: ['OrderFactory', 'PaymentFactory', 'UserProvider', 'DialogFactory'],
+      useCases: [
+        'OrderFactory',
+        'PaymentFactory',
+        'UserProvider',
+        'DialogFactory'
+      ],
       icon: Icons.handyman,
     ),
     PatternInfo(
@@ -69,7 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
       description: 'Construye objetos complejos paso a paso',
       problem: 'Objetos con muchos parámetros, muchos opcionales',
       solution: 'Un builder que añade parámetros uno por uno de forma legible',
-      useCases: ['ComplexOrderBuilder', 'UIBuilder', 'QueryBuilder', 'HTTPRequestBuilder'],
+      useCases: [
+        'ComplexOrderBuilder',
+        'UIBuilder',
+        'QueryBuilder',
+        'HTTPRequestBuilder'
+      ],
       icon: Icons.build,
     ),
     PatternInfo(
@@ -102,9 +115,14 @@ class _HomeScreenState extends State<HomeScreen> {
       category: 'Structural',
       categoryColor: AppTheme.structuralColor,
       description: 'Añade comportamiento dinámicamente sin herencia',
-      problem: 'Quieres añadir responsabilidades dinámicamente sin explosión de subclases',
+      problem:
+          'Quieres añadir responsabilidades dinámicamente sin explosión de subclases',
       solution: 'Decora el objeto con componentes adicionales',
-      useCases: ['CoffeeDecorator (Milk, Sugar)', 'UIDecorator', 'LoggingDecorator'],
+      useCases: [
+        'CoffeeDecorator (Milk, Sugar)',
+        'UIDecorator',
+        'LoggingDecorator'
+      ],
       icon: Icons.layers,
     ),
     PatternInfo(
@@ -113,7 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
       category: 'Structural',
       categoryColor: AppTheme.structuralColor,
       description: 'Interfaz simple para subsistema complejo',
-      problem: 'Subsistema con 10+ clases, no quieres que otros las usen directamente',
+      problem:
+          'Subsistema con 10+ clases, no quieres que otros las usen directamente',
       solution: 'Una Facade simplifica el acceso',
       useCases: ['AppFacade', 'DatabaseFacade', 'PaymentGatewayFacade'],
       icon: Icons.dashboard,
@@ -139,7 +158,12 @@ class _HomeScreenState extends State<HomeScreen> {
       description: 'Notifica múltiples objetos de cambios',
       problem: 'Cuando cambia algo, muchas pantallas deben actualizarse',
       solution: 'El objeto cambiante "avisa" a los que están escuchando',
-      useCases: ['OrderObserver', 'LiveData', 'StateNotifier', 'ChangeNotifier'],
+      useCases: [
+        'OrderObserver',
+        'LiveData',
+        'StateNotifier',
+        'ChangeNotifier'
+      ],
       icon: Icons.notifications,
     ),
     PatternInfo(
@@ -148,10 +172,11 @@ class _HomeScreenState extends State<HomeScreen> {
       category: 'Behavioral',
       categoryColor: AppTheme.behavioralColor,
       description: 'Intercambia algoritmos dinámicamente',
-      problem: 'Múltiples formas de hacer lo mismo, elige en tiempo de ejecución',
+      problem:
+          'Múltiples formas de hacer lo mismo, elige en tiempo de ejecución',
       solution: 'Cada estrategia es una clase separada',
       useCases: ['PricingStrategy', 'PaymentStrategy', 'SortingStrategy'],
-      icon: Icons.fork,
+      icon: Icons.call_split,
     ),
     PatternInfo(
       id: 'state',
@@ -161,8 +186,11 @@ class _HomeScreenState extends State<HomeScreen> {
       description: 'Cambiar comportamiento según estado',
       problem: 'Objeto se comporta diferente según su estado',
       solution: 'Cada estado es una clase separada',
-      useCases: ['OrderState (Pending/Processing/Completed)', 'ConnectionState'],
-      icon: Icons.flow_split,
+      useCases: [
+        'OrderState (Pending/Processing/Completed)',
+        'ConnectionState'
+      ],
+      icon: Icons.account_tree,
     ),
     PatternInfo(
       id: 'command',
@@ -214,7 +242,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return patterns.where((pattern) {
       final matchesCategory =
           selectedCategory == 'All' || pattern.category == selectedCategory;
-      final matchesSearch = pattern.name.toLowerCase().contains(searchQuery.toLowerCase()) ||
+      final matchesSearch = pattern.name
+              .toLowerCase()
+              .contains(searchQuery.toLowerCase()) ||
           pattern.description.toLowerCase().contains(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     }).toList();
@@ -222,8 +252,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('🏛️ GoF Patterns Showcase'),
@@ -263,8 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       suffixIcon: searchQuery.isNotEmpty
                           ? IconButton(
                               icon: const Icon(Icons.clear),
-                              onPressed: () =>
-                                  setState(() => searchQuery = ''),
+                              onPressed: () => setState(() => searchQuery = ''),
                             )
                           : null,
                     ),

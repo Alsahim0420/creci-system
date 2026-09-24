@@ -7,7 +7,7 @@ abstract class Button {
   Widget build();
 }
 
-abstract class TextField {
+abstract class ThemeTextField {
   Widget build();
 }
 
@@ -25,7 +25,7 @@ class LightButton implements Button {
       );
 }
 
-class LightTextField implements TextField {
+class LightTextField implements ThemeTextField {
   @override
   Widget build() => TextField(
         decoration: InputDecoration(
@@ -54,7 +54,7 @@ class DarkButton implements Button {
       );
 }
 
-class DarkTextField implements TextField {
+class DarkTextField implements ThemeTextField {
   @override
   Widget build() => TextField(
         decoration: InputDecoration(
@@ -72,7 +72,7 @@ class DarkTextField implements TextField {
 // Abstract factory
 abstract class UIFactory {
   Button createButton();
-  TextField createTextField();
+  ThemeTextField createTextField();
 }
 
 // Concrete factories
@@ -81,7 +81,7 @@ class LightThemeFactory implements UIFactory {
   Button createButton() => LightButton();
 
   @override
-  TextField createTextField() => LightTextField();
+  ThemeTextField createTextField() => LightTextField();
 }
 
 class DarkThemeFactory implements UIFactory {
@@ -89,22 +89,21 @@ class DarkThemeFactory implements UIFactory {
   Button createButton() => DarkButton();
 
   @override
-  TextField createTextField() => DarkTextField();
+  ThemeTextField createTextField() => DarkTextField();
 }
 
 class AbstractFactoryExample extends StatefulWidget {
   const AbstractFactoryExample({Key? key}) : super(key: key);
 
   @override
-  State<AbstractFactoryExample> createState() =>
-      _AbstractFactoryExampleState();
+  State<AbstractFactoryExample> createState() => _AbstractFactoryExampleState();
 }
 
 class _AbstractFactoryExampleState extends State<AbstractFactoryExample> {
   bool _isDarkMode = false;
   late UIFactory _factory;
   late Button _button;
-  late TextField _textField;
+  late ThemeTextField _textField;
 
   @override
   void initState() {
